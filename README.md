@@ -1,12 +1,12 @@
 # TakaTrail
 
-**Personal Expense Tracker**
+**Java Swing Personal Expense Tracker**
 
 > TakaTrail is a Java Swing-based multi-user personal finance application developed for the CSE 215L Object-Oriented Programming final project. It allows users to securely track income and expenses, manage monthly budgets, view financial reports and charts, and back up or restore financial data.
 
 **CSE 215 Final Project — Group 13**
 
-## Course Project Information
+## Academic Project Information
 
 | Field | Details |
 | --- | --- |
@@ -24,11 +24,19 @@
 | Mohammad Hamim | 2422371642 |
 | Md. Nafij Jaman Rabbi | 2513403642 |
 
-## Overview
+## Team Contributions
+
+| Team Member | Contribution |
+| --- | --- |
+| Shibli Rahman Moon | Swing GUI, OOP transaction model, Dashboard, Reports/charts, integration, testing, NetBeans verification, documentation, and final submission preparation. |
+| Mohammad Hamim | Authentication, user management, password security, SQLite persistence, and user-scoped data handling. |
+| Md. Nafij Jaman Rabbi | Transaction CRUD, search/filtering, validation, custom exception handling, and text backup/restore. |
+
+## Project Overview
 
 Each user creates a local account and signs in before accessing financial data. Passwords are protected with PBKDF2 hashing and a random salt. Transactions and budgets are stored in SQLite, while backup and restore use an intentionally readable escaped text format.
 
-## Features
+## Key Features
 
 - Account registration, login, and logout
 - PBKDF2WithHmacSHA256 password hashing with random salts
@@ -40,6 +48,56 @@ Each user creates a local account and signs in before accessing financial data. 
 - JFreeChart expense-category pie charts and six-month spending bar charts
 - Text export and restore with safe pipe/backslash escaping
 - Friendly handling of validation, database, and file errors
+
+## OOP Coverage
+
+| Principle | Evidence in TakaTrail |
+| --- | --- |
+| Encapsulation | `User`, `Transaction`, and `Budget` keep state in private fields and expose controlled access. |
+| Inheritance | `Income` and `Expense` extend the abstract `Transaction` parent class. |
+| Abstraction | `Transaction` defines the shared transaction state and abstract `getType()` contract. |
+| Polymorphism | Real `Income` and `Expense` objects are processed through `Transaction` references; overridden `getType()` calls use runtime dynamic dispatch. |
+
+## Technologies
+
+- Java 17
+- Java Swing
+- Maven
+- SQLite and JDBC
+- JFreeChart 1.5.6
+- Java Collections, `LocalDate`, Java security APIs, and Java File I/O
+
+## Quick Start
+
+### Requirements
+
+- JDK 17 or newer
+- Apache Maven 3.9 or newer
+- A desktop environment capable of displaying Swing windows
+
+The project compiles to Java 17 bytecode even when a newer JDK is installed.
+
+### Build and Run
+
+1. Clone or download the repository.
+2. Open a terminal in the project root.
+3. Confirm `java -version` and `mvn -version` are available.
+4. Build and launch TakaTrail:
+
+```bash
+mvn clean compile
+mvn exec:java
+```
+
+Maven downloads the two declared dependencies during the first build. Register a user on the opening screen, then log in. Closing and reopening the application preserves locally stored data.
+
+The repository does not track a database file. TakaTrail creates `data/takatrail.db` on first launch; any existing local database remains ignored by Git.
+
+## Testing and Academic Evidence
+
+The complete verification record is maintained in [`docs/REPORT_EVIDENCE.md`](docs/REPORT_EVIDENCE.md). It documents **31 passed functional smoke checks**, **10 passed transaction-table UI checks**, successful Maven build and startup verification, NetBeans action verification, multi-user isolation, persistence, backup/restore, checked validation, subclass behavior, and runtime dispatch.
+
+Authentication and GUI workflows should still be exercised on a desktop before a live demonstration. The local database can be removed between first-run tests; it is intentionally ignored by Git.
 
 ## Screenshots
 
@@ -92,47 +150,6 @@ Each user creates a local account and signs in before accessing financial data. 
 #### Database Persistence
 
 ![TakaTrail Database Persistence](docs/screenshots/database-persistence.png)
-
-## Technologies
-
-- Java 17
-- Java Swing
-- Maven
-- SQLite and JDBC
-- JFreeChart 1.5.6
-- Java Collections, `LocalDate`, Java security APIs, and Java File I/O
-
-## Requirements
-
-- JDK 17 or newer
-- Apache Maven 3.9 or newer
-- A desktop environment capable of displaying Swing windows
-
-The project compiles to Java 17 bytecode even when a newer JDK is installed.
-
-## Installation
-
-1. Clone or download the repository.
-2. Open a terminal in the project root.
-3. Confirm `java -version` and `mvn -version` are available.
-4. Maven downloads the two declared dependencies during the first build.
-
-The repository does not track a database file. TakaTrail creates `data/takatrail.db` on first launch;
-any existing local database remains ignored by Git.
-
-## Build
-
-```bash
-mvn clean compile
-```
-
-## Run
-
-```bash
-mvn exec:java
-```
-
-Register a user on the opening screen, then log in. Closing and reopening the application preserves locally stored data.
 
 ## IDE Compatibility
 
@@ -208,7 +225,7 @@ Foreign keys use `ON DELETE CASCADE`. Every transaction and budget query is scop
 
 Backup files never contain usernames, passwords, hashes, or salts.
 
-## OOP Concepts
+## Detailed OOP Evidence
 
 ### Encapsulation
 
@@ -254,10 +271,6 @@ TAKATRAIL_BACKUP_V1
 BUDGET|25000.0
 TRANSACTION|INCOME|42000.0|2026-08-01|Salary|Fictional August salary
 ```
-
-## Testing
-
-Build verification and a 30-case manual test matrix are recorded in [`docs/REPORT_EVIDENCE.md`](docs/REPORT_EVIDENCE.md). Authentication and GUI workflows should be exercised on a desktop before a live demonstration. The database can be removed locally between first-run tests; it is intentionally ignored by Git.
 
 ## Future Improvements
 
