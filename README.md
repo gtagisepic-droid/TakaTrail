@@ -43,35 +43,33 @@ Each user creates a local account and signs in before accessing financial data. 
 
 ## Screenshots
 
-Real screenshots can be added to `docs/screenshots/` after running the application.
-
 ### Login
 
-Screenshot placeholder.
+![TakaTrail Login](docs/screenshots/login.png)
 
 ### Dashboard
 
-Screenshot placeholder.
+![TakaTrail Dashboard](docs/screenshots/dashboard.png)
 
 ### Transactions
 
-Screenshot placeholder.
+![TakaTrail Transactions](docs/screenshots/transactions.png)
 
 ### Add Transaction
 
-Screenshot placeholder.
+![TakaTrail Add Transaction](docs/screenshots/add-transaction.png)
 
 ### Budget
 
-Screenshot placeholder.
+![TakaTrail Budget](docs/screenshots/budget.png)
 
 ### Reports
 
-Screenshot placeholder.
+![TakaTrail Reports](docs/screenshots/reports.png)
 
 ### Backup / Restore
 
-Screenshot placeholder.
+![TakaTrail Backup and Restore](docs/screenshots/backup-restore.png)
 
 ## Technologies
 
