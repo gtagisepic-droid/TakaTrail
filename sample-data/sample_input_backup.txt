@@ -1,0 +1,7 @@
+TAKATRAIL_BACKUP_V1
+BUDGET|25000.0
+TRANSACTION|INCOME|42000.0|2026-08-01|Salary|Fictional August salary
+TRANSACTION|EXPENSE|850.0|2026-08-05|Food|Groceries and snacks
+TRANSACTION|EXPENSE|1200.0|2026-08-11|Education|Java reference book
+TRANSACTION|EXPENSE|300.0|2026-08-15|Transport|Bus fare \| return trip
+TRANSACTION|INCOME|4500.0|2026-08-18|Freelance|Demo design work\\revision
