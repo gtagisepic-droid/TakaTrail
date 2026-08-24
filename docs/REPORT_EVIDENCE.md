@@ -1,6 +1,6 @@
 # TakaTrail Report Evidence
 
-This document maps working project code to evidence that can be used in the university report. Member contribution allocations remain intentionally blank until the team confirms them.
+This document maps the final working project code, agreed member responsibilities, and verified test results to evidence for the university report.
 
 ## 1. Cover Page
 
@@ -36,6 +36,7 @@ The application addresses the difficulty of consistently tracking personal incom
 | Edit transaction | `TransactionManager.updateTransaction`, `DatabaseManager.updateTransaction` | Validates changes and checks both transaction ID and authenticated user ID. |
 | Delete transaction | `DatabaseManager.deleteTransaction`, `TakaTrailGUI.handleDeleteTransaction` | Requires selection and confirmation; SQL checks transaction and user IDs. |
 | Search/filter | `TransactionManager.searchTransactions`, `TakaTrailGUI.refreshTransactions` | Matches description, category, date, or type while operating on current-user records only. |
+| Transaction table presentation | `TakaTrailGUI.createTransactionsPage`, `installCenteredRenderer` | Uses balanced column widths, centered ID/date values, right-aligned amounts, and subtle vertical separators without changing stored data. |
 | Financial summaries | `TransactionManager.calculateTotalIncome`, `calculateTotalExpense`, `calculateBalance` | Calculates totals using real `Transaction` objects. |
 | Monthly budget | `DatabaseManager.loadBudget`, `saveBudget`, `TakaTrailGUI.refreshBudget` | Stores one budget per user and safely handles a zero/unset limit. |
 | Budget warning | `TakaTrailGUI.showBudgetWarningIfExceeded` | Warns after relevant data changes, not during ordinary refreshes. |
@@ -71,50 +72,53 @@ The application addresses the difficulty of consistently tracking personal incom
 
 ## 6. Member Contribution
 
-Do not complete this section until the team agrees on accurate contributions.
-
-| Member name and ID | Contribution |
-|---|---|
-| Shibli Rahman Moon — 2534187012 | ____________________ |
-| Mohammad Hamim — 2422371642 | ____________________ |
-| Md. Nafij Jaman Rabbi — 2513403642 | ____________________ |
+| Member | Main Responsibility | Contribution |
+|---|---|---|
+| Shibli Rahman Moon — 2534187012 | GUI, OOP Model, Reports, Integration & Testing | Worked on the Swing interface and navigation, Dashboard, reports/charts, budget presentation, and the abstract `Transaction`/`Income`/`Expense` model. Integrated the major modules and handled final UI, OOP, NetBeans, documentation, testing, and submission verification. |
+| Mohammad Hamim — 2422371642 | Authentication & Database | Worked on registration and login/logout, the encapsulated `User` model, secure password validation, SQLite initialization and persistence, and user-scoped financial storage. |
+| Md. Nafij Jaman Rabbi — 2513403642 | Transactions, Validation & File Handling | Worked on transaction add/edit/delete, search/filtering, checked transaction validation, `InvalidTransactionException`, and text backup/restore using the required Java file streams. |
 
 ## 7. Testing and Results
 
-Use a fresh test account and fictional values. Fill the Actual Result column only after performing each test.
+Testing used a clean project copy at `%TEMP%\TakaTrail_Final_Verification`. The copy excluded `.git`, `target`, local backups, and the presentation database; it created its own SQLite database. Temporary plain-Java harnesses called the real project classes without adding a dependency or test file to the submitted project.
 
-| Test ID | Feature | Input/Action | Expected Result | Actual Result |
-|---|---|---|---|---|
-| TT-01 | Register valid user | Enter all fields, matching 6+ character password | Account is created and Login is shown | __________ |
-| TT-02 | Duplicate username | Register an existing username | `Username already exists.` is shown | __________ |
-| TT-03 | Empty registration field | Leave one field blank | Required-fields message is shown | __________ |
-| TT-04 | Password mismatch | Enter different password confirmations | Password mismatch message is shown | __________ |
-| TT-05 | Login success | Enter valid credentials | Dashboard opens for that user | __________ |
-| TT-06 | Wrong password | Enter a wrong password | Generic invalid-credentials message is shown | __________ |
-| TT-07 | Logout | Choose Logout and confirm | Data is cleared and Login is shown | __________ |
-| TT-08 | Add income | Add Salary, positive amount, valid date | Income is saved and all totals refresh | __________ |
-| TT-09 | Add expense | Add Food, positive amount, valid date | Expense is saved and budget/charts refresh | __________ |
-| TT-10 | Zero transaction amount | Enter `0` | Custom validation message rejects it | __________ |
-| TT-11 | Negative transaction amount | Enter `-50` | Custom validation message rejects it | __________ |
-| TT-12 | Invalid date | Enter `2026-02-30` | Date-format validation message is shown | __________ |
-| TT-13 | Edit transaction | Select a row and change valid values | Only that user's row is updated | __________ |
-| TT-14 | Delete transaction | Select row, click Delete, confirm Yes | Row is deleted and views refresh | __________ |
-| TT-15 | Cancel deletion | Click Delete, confirm No | Row remains unchanged | __________ |
-| TT-16 | Search transaction | Search by description/date/category | Matching current-user rows remain | __________ |
-| TT-17 | Filter income | Select Type = Income | Only incomes are displayed | __________ |
-| TT-18 | Filter expense | Select Type = Expense | Only expenses are displayed | __________ |
-| TT-19 | Category filter | Select a category | Only matching category rows display | __________ |
-| TT-20 | Budget update | Enter a positive monthly limit | Budget is persisted and progress refreshes | __________ |
-| TT-21 | Budget exceed warning | Add expense causing current month to exceed limit | One warning appears after the event | __________ |
-| TT-22 | Pie chart | Add expenses in multiple categories | Pie chart uses correct category totals | __________ |
-| TT-23 | Monthly bar chart | Add dated expenses across recent months | Bars appear chronologically with correct totals | __________ |
-| TT-24 | Export backup | Choose Export My Data and a file | Valid text backup is created without credentials | __________ |
-| TT-25 | Restore backup | Select valid sample, confirm restore | Valid transactions/budget restore and views refresh | __________ |
-| TT-26 | Invalid backup header | Restore a text file with wrong header | Friendly invalid-backup message is shown | __________ |
-| TT-27 | Malformed backup line | Restore file containing one bad transaction line | Valid lines restore and skipped count is reported | __________ |
-| TT-28 | Multi-user isolation | Create users A/B and compare/edit/export data | Neither user can access the other's financial data | __________ |
-| TT-29 | Database persistence after restart | Save data, close, reopen, and log in | Previously saved data remains | __________ |
-| TT-30 | Empty/new-user state | Log in as a new user | Zero totals, no rows, safe charts, and no budget state appear | __________ |
+| Test ID | Area | Input / Action | Expected Result | Actual Result | Status |
+|---|---|---|---|---|---|
+| TT-01 | Database startup | Initialize in a clean temporary project | Database and three tables are created automatically | Fresh `data/takatrail.db` was created and used successfully | Passed |
+| TT-02 | Registration/security | Register a valid user and inspect stored credentials | User is created; hash and salt are non-empty and password is not stored directly | User ID returned; PBKDF2 hash differed from input and salt was present | Passed |
+| TT-03 | Registration validation | Repeat username and submit a blank required field | Both invalid registrations are rejected | Both calls raised the expected `IllegalArgumentException` | Passed |
+| TT-04 | Login/logout | Authenticate correctly, try a wrong password, then log out | Correct login succeeds; failures and logout clear the session | All session-state assertions passed | Passed |
+| TT-05 | Add/OOP types | Add one income and two expenses | Records persist as the correct subclasses | `Income`/`Expense` instances loaded; overridden `getType()` dispatched correctly | Passed |
+| TT-06 | Custom validation | Submit zero, negative, and invalid-date transactions | Checked validation rejects each value | All three raised `InvalidTransactionException` | Passed |
+| TT-07 | Load/persistence | Reload saved transactions | Three records return with correct subclass types | Three records loaded: one `Income`, two `Expense` | Passed |
+| TT-08 | Edit/delete | Update an owned income and delete an owned expense | Changes persist only for the owner | Update and delete returned true; reloaded values/count were correct | Passed |
+| TT-09 | Search/filter | Search description; filter by type and category | Only matching records are returned | Search, Expense filter, and Food filter returned expected counts | Passed |
+| TT-10 | Calculations | Calculate income, expense, balance, and current-month expense | Totals match persisted test values | `1200`, `350`, `850`, and `250` matched exactly | Passed |
+| TT-11 | Chart data | Aggregate category and six-month expense values | Category/month maps contain real calculated totals | Food/Transport and current/previous-month totals matched | Passed |
+| TT-12 | Budget | Save and reload a monthly limit | Budget persists for its user | Reloaded limit was `500.0` | Passed |
+| TT-13 | User isolation | Add different data for users A and B, then load each | Each user receives only owned rows | User A loaded three rows; user B loaded one separate row | Passed |
+| TT-14 | Ownership enforcement | Try to update/delete user A's row using user B's ID | Both operations are rejected and A's row is unchanged | Both returned false; A's amount and row remained intact | Passed |
+| TT-15 | Text export | Export budget/transactions containing escaped characters | Valid header/data are written without credentials | Header, budget, escaped text verified; username/password/hash/salt absent | Passed |
+| TT-16 | Valid restore | Restore user A's export for user B | Values restore and every new row belongs to B | Three rows and budget restored; all restored `userId` values matched B | Passed |
+| TT-17 | Malformed restore | Restore one valid transaction plus two malformed lines | Valid data applies and malformed lines are counted/skipped | One row restored, two lines skipped, budget restored | Passed |
+| TT-18 | Invalid header | Restore a file with a wrong header | Restore fails without replacing existing data | `IOException` raised and prior row count remained unchanged | Passed |
+| TT-19 | Restart persistence | Recreate managers and authenticate/load again | Credentials, transactions, and budget remain available | Login, three A records, and `500.0` budget reloaded | Passed |
+| TT-20 | Table dimensions/alignment | Render ID `107`, date `2026-08-25`, and amount in the isolated Swing UI | ID/date are distinct and centered; amount stays right-aligned | Preferred/bounded widths and all three renderer alignments matched | Passed |
+| TT-21 | Table styling/controls | Inspect separators, type colors, row striping, scrolling, Edit/Delete actions | Existing styling and controls remain functional | Ten UI-property checks passed; captured Swing rendering was visually inspected | Passed |
+| TT-22 | Maven build | Run `mvn clean compile` in the real project | Java 17 sources compile | `BUILD SUCCESS`; 12 production source files compiled | Passed |
+| TT-23 | Application startup | Run `mvn exec:java` and close the Login window normally | Responsive TakaTrail Login opens without startup errors | Login window opened, responded, and Maven exited cleanly after close | Passed |
+| TT-24 | NetBeans mapping | Parse `nbactions.xml` and run its two Maven goals | `process-classes` then `exec:java` starts `com.takatrail.Main` | Mapping matched; exact sequence opened the responsive Login window | Passed |
+| TT-25 | README screenshots | Validate repository-relative links and review current images | Only current, safe screenshots are linked | Six links resolve; the outdated Transactions link was removed pending a real retake | Manual visual verification required |
+
+### Test Summary
+
+- Isolated functional smoke checks: **31 passed, 0 failed**.
+- Isolated transaction-table UI checks: **10 passed, 0 failed**.
+- Maven build and application startup: successful.
+- Database persistence, ownership isolation, backup/restore, checked validation, subclass behavior, and runtime dispatch passed.
+- NetBeans action mapping and its exact Maven goal sequence passed; the previously confirmed NetBeans **Run Project** workflow remains unchanged.
+- Presentation database size, modified timestamp, and SHA-256 remained unchanged throughout the audit.
+- Only a new presentation-data Transactions screenshot requires manual capture.
 
 ### Build Evidence
 
@@ -135,6 +139,7 @@ mvn clean compile
 - **Readable escaping:** `FileManager` escapes `\\` and `|`, preserving descriptions without a serialization framework.
 - **Safe restore:** malformed individual records are skipped, and valid data is applied in a single SQLite transaction.
 - **Empty charts and budgets:** chart no-data messages and guarded budget division prevent first-run crashes.
+- **Dense transaction table:** bounded preferred widths, centered identifiers/dates, and subtle vertical grid lines separate values while the Description column remains flexible.
 
 ## 9. Conclusion Evidence
 
@@ -142,15 +147,15 @@ TakaTrail demonstrates a complete desktop CRUD workflow, secure local persistenc
 
 ## Report Screenshot Checklist
 
-- [ ] Login screen
+- [x] Login screen
 - [ ] Registration screen
-- [ ] Dashboard with data
-- [ ] Add Transaction form
-- [ ] Transactions JTable
-- [ ] Budget page
-- [ ] Reports Pie Chart
-- [ ] Reports Bar Chart
-- [ ] Backup/Restore page
+- [x] Dashboard with data
+- [x] Add Transaction form
+- [ ] Transactions JTable — retake with the corrected ID/date spacing
+- [x] Budget page
+- [x] Reports Pie Chart
+- [x] Reports Bar Chart
+- [x] Backup/Restore page
 - [ ] Custom exception validation message
 - [ ] Budget warning
 - [ ] Successful backup

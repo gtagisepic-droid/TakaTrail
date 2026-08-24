@@ -51,10 +51,6 @@ Each user creates a local account and signs in before accessing financial data. 
 
 ![TakaTrail Dashboard](docs/screenshots/dashboard.png)
 
-### Transactions
-
-![TakaTrail Transactions](docs/screenshots/transactions.png)
-
 ### Add Transaction
 
 ![TakaTrail Add Transaction](docs/screenshots/add-transaction.png)
@@ -114,7 +110,8 @@ Register a user on the opening screen, then log in. Closing and reopening the ap
 
 ## IDE Compatibility
 
-TakaTrail uses only the standard Maven directory layout and `pom.xml`; no IDE-specific project file is required.
+TakaTrail uses the standard Maven directory layout and remains runnable from any terminal. The portable
+`nbactions.xml` file maps NetBeans **Run Project** to the same Maven launcher without adding a runtime dependency.
 
 ### Visual Studio Code
 
@@ -128,7 +125,7 @@ No `.vscode` settings, launch file, VS Code dependency, or workspace-specific cl
 
 1. Choose **File → Open Project** and select the repository root containing `pom.xml`.
 2. NetBeans recognizes it as a Maven Java project and resolves the dependencies.
-3. Use **Run Project**, run `com.takatrail.Main`, or invoke the Maven `exec:java` goal.
+3. Use **Run Project**; `nbactions.xml` runs `process-classes` followed by `exec:java` with `com.takatrail.Main`.
 
 Both IDEs should use JDK 17 or newer. Maven compiles the project with `--release 17`, and `com.takatrail.Main` is declared consistently as the Maven execution and JAR manifest entry point.
 
@@ -137,6 +134,7 @@ Both IDEs should use JDK 17 or newer. Maven compiles the project with `--release
 ```text
 TakaTrail/
 ├── .gitignore
+├── nbactions.xml
 ├── pom.xml
 ├── README.md
 ├── src/main/
@@ -158,7 +156,11 @@ TakaTrail/
 ├── data/
 │   └── .gitkeep
 ├── docs/
-│   └── REPORT_EVIDENCE.md
+│   ├── REPORT_EVIDENCE.md
+│   └── screenshots/
+│       ├── login.png
+│       ├── dashboard.png
+│       └── ...
 └── sample-data/
     ├── sample_input_backup.txt
     └── sample_expected_export.txt

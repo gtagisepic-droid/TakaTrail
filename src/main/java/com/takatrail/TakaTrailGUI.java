@@ -53,6 +53,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -539,9 +540,16 @@ public class TakaTrailGUI extends JFrame {
                 new String[]{"ID", "Date", "Type", "Category", "Description", "Amount"});
         transactionTable = createTable(transactionTableModel);
         transactionTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        transactionTable.getColumnModel().getColumn(0).setPreferredWidth(45);
-        transactionTable.getColumnModel().getColumn(4).setPreferredWidth(260);
+        configureColumnWidth(transactionTable, 0, 55, 70, 85);
+        configureColumnWidth(transactionTable, 1, 90, 115, 135);
+        configureColumnWidth(transactionTable, 2, 75, 95, 115);
+        configureColumnWidth(transactionTable, 3, 95, 130, 175);
+        configureColumnWidth(transactionTable, 4, 180, 300, 0);
+        configureColumnWidth(transactionTable, 5, 100, 125, 150);
+        installCenteredRenderer(transactionTable, 0, 1);
         installRightAlignedRenderer(transactionTable, 5);
+        transactionTable.setShowVerticalLines(true);
+        transactionTable.setIntercellSpacing(new Dimension(1, 1));
         JPanel tableCard = whitePanel(new BorderLayout());
         transactionTableLayout = new CardLayout();
         transactionTableCards = new JPanel(transactionTableLayout);
@@ -1753,6 +1761,24 @@ public class TakaTrailGUI extends JFrame {
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setHorizontalAlignment(SwingConstants.RIGHT);
         table.getColumnModel().getColumn(column).setCellRenderer(renderer);
+    }
+
+    private void installCenteredRenderer(JTable table, int... columns) {
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int column : columns) {
+            table.getColumnModel().getColumn(column).setCellRenderer(renderer);
+        }
+    }
+
+    private void configureColumnWidth(JTable table, int columnIndex,
+                                      int minimumWidth, int preferredWidth, int maximumWidth) {
+        TableColumn column = table.getColumnModel().getColumn(columnIndex);
+        column.setMinWidth(minimumWidth);
+        column.setPreferredWidth(preferredWidth);
+        if (maximumWidth > 0) {
+            column.setMaxWidth(maximumWidth);
+        }
     }
 
     private JPanel createEmptyStatePanel(JLabel titleLabel, String description) {
