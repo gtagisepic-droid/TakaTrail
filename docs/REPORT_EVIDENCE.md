@@ -108,7 +108,7 @@ Testing used a clean project copy at `%TEMP%\TakaTrail_Final_Verification`. The 
 | TT-22 | Maven build | Run `mvn clean compile` in the real project | Java 17 sources compile | `BUILD SUCCESS`; 12 production source files compiled | Passed |
 | TT-23 | Application startup | Run `mvn exec:java` and close the Login window normally | Responsive TakaTrail Login opens without startup errors | Login window opened, responded, and Maven exited cleanly after close | Passed |
 | TT-24 | NetBeans mapping | Parse `nbactions.xml` and run its two Maven goals | `process-classes` then `exec:java` starts `com.takatrail.Main` | Mapping matched; exact sequence opened the responsive Login window | Passed |
-| TT-25 | README screenshots | Validate repository-relative links and review current images | Only current, safe screenshots are linked | Six links resolve; the outdated Transactions link was removed pending a real retake | Manual visual verification required |
+| TT-25 | README screenshots | Validate repository-relative links and review current images | Only current, safe screenshots are linked | Twelve repository-relative links resolve and correspond to the reviewed files | Passed |
 
 ### Test Summary
 
@@ -118,7 +118,7 @@ Testing used a clean project copy at `%TEMP%\TakaTrail_Final_Verification`. The 
 - Database persistence, ownership isolation, backup/restore, checked validation, subclass behavior, and runtime dispatch passed.
 - NetBeans action mapping and its exact Maven goal sequence passed; the previously confirmed NetBeans **Run Project** workflow remains unchanged.
 - Presentation database size, modified timestamp, and SHA-256 remained unchanged throughout the audit.
-- Only a new presentation-data Transactions screenshot requires manual capture.
+- Final screenshot documentation is complete; all twelve repository-relative README image links resolve.
 
 ### Build Evidence
 
@@ -148,15 +148,15 @@ TakaTrail demonstrates a complete desktop CRUD workflow, secure local persistenc
 ## Report Screenshot Checklist
 
 - [x] Login screen
-- [ ] Registration screen
+- [x] Registration screen
 - [x] Dashboard with data
 - [x] Add Transaction form
-- [ ] Transactions JTable — retake with the corrected ID/date spacing
+- [x] Transactions JTable with corrected ID/date spacing
 - [x] Budget page
 - [x] Reports Pie Chart
 - [x] Reports Bar Chart
 - [x] Backup/Restore page
-- [ ] Custom exception validation message
-- [ ] Budget warning
-- [ ] Successful backup
-- [ ] Database persistence evidence if useful
+- [x] Custom exception validation message
+- [x] Budget warning
+- [x] Successful backup
+- [x] Database persistence evidence

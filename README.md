@@ -47,9 +47,17 @@ Each user creates a local account and signs in before accessing financial data. 
 
 ![TakaTrail Login](docs/screenshots/login.png)
 
+### Registration
+
+![TakaTrail Registration](docs/screenshots/registration.png)
+
 ### Dashboard
 
 ![TakaTrail Dashboard](docs/screenshots/dashboard.png)
+
+### Transactions
+
+![TakaTrail Transactions](docs/screenshots/transactions.png)
 
 ### Add Transaction
 
@@ -66,6 +74,24 @@ Each user creates a local account and signs in before accessing financial data. 
 ### Backup / Restore
 
 ![TakaTrail Backup and Restore](docs/screenshots/backup-restore.png)
+
+### Validation and Persistence Evidence
+
+#### Custom Exception Validation
+
+![TakaTrail Custom Exception Validation](docs/screenshots/custom-exception.png)
+
+#### Budget Warning
+
+![TakaTrail Budget Warning](docs/screenshots/budget-warning.png)
+
+#### Successful Backup
+
+![TakaTrail Successful Backup](docs/screenshots/successful-backup.png)
+
+#### Database Persistence
+
+![TakaTrail Database Persistence](docs/screenshots/database-persistence.png)
 
 ## Technologies
 
