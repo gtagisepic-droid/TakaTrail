@@ -537,8 +537,13 @@ public class TakaTrailGUI extends JFrame {
         content.add(filters, BorderLayout.NORTH);
 
         transactionTableModel = nonEditableTableModel(
-                new String[]{"ID", "Date", "Type", "Category", "Description", "Amount"});
-        transactionTable = createTable(transactionTableModel);
+        new String[]{"ID", "No.", "Date", "Type", "Category", "Description", "Amount"});
+transactionTable = createTable(transactionTableModel);
+
+// Keep the real database ID internally for Edit/Delete,
+// but do not display it to the user.
+TableColumn internalIdColumn = transactionTable.getColumnModel().getColumn(0);
+transactionTable.removeColumn(internalIdColumn);
         transactionTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         configureColumnWidth(transactionTable, 0, 55, 70, 85);
         configureColumnWidth(transactionTable, 1, 90, 115, 135);
@@ -880,7 +885,8 @@ public class TakaTrailGUI extends JFrame {
             showError("Please select a transaction to edit.");
             return;
         }
-        int transactionId = (Integer) transactionTableModel.getValueAt(selectedRow, 0);
+        int modelRow = transactionTable.convertRowIndexToModel(selectedRow);
+int transactionId = (Integer) transactionTableModel.getValueAt(modelRow, 0);
         Transaction transaction = findCurrentTransaction(transactionId);
         User user = authManager.getCurrentUser();
         if (transaction == null || user == null) {
@@ -953,7 +959,8 @@ public class TakaTrailGUI extends JFrame {
             showError("Please select a transaction to delete.");
             return;
         }
-        int transactionId = (Integer) transactionTableModel.getValueAt(selectedRow, 0);
+        int modelRow = transactionTable.convertRowIndexToModel(selectedRow);
+int transactionId = (Integer) transactionTableModel.getValueAt(modelRow, 0);
         int choice = JOptionPane.showConfirmDialog(this,
                 "Delete the selected transaction? This action cannot be undone.",
                 "Confirm Deletion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -1144,12 +1151,19 @@ public class TakaTrailGUI extends JFrame {
         List<Transaction> visible = transactionManager.searchTransactions(
                 financialTransactions, query, type, category);
         transactionTableModel.setRowCount(0);
-        for (Transaction transaction : visible) {
-            transactionTableModel.addRow(new Object[]{
-                    transaction.getId(), transaction.getDate(), transaction.getType(), transaction.getCategory(),
-                    transaction.getDescription(), formatMoney(transaction.getAmount())
-            });
-        }
+
+int serialNumber = 1;
+for (Transaction transaction : visible) {
+    transactionTableModel.addRow(new Object[]{
+            transaction.getId(),
+            serialNumber++,
+            transaction.getDate(),
+            transaction.getType(),
+            transaction.getCategory(),
+            transaction.getDescription(),
+            formatMoney(transaction.getAmount())
+    });
+}
         if (transactionTableLayout != null) {
             boolean hasAnyTransactions = !financialTransactions.isEmpty();
             transactionEmptyLabel.setText(hasAnyTransactions
