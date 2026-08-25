@@ -4,7 +4,7 @@
 
 > TakaTrail is a Java Swing-based multi-user personal finance application developed for the CSE 215L Object-Oriented Programming final project. It allows users to securely track income and expenses, manage monthly budgets, view financial reports and charts, and back up or restore financial data.
 
-**CSE 215 Final Project — Group 13**
+**CSE 215L Final Project — Group 13**
 
 ## Academic Project Information
 
@@ -12,9 +12,11 @@
 | --- | --- |
 | Course | CSE 215L — Object-Oriented Programming |
 | Section | 12 |
+| Group | 13 |
 | Faculty | RIH |
 | Registered Topic | Personal Expenses Tracker |
 | Project Title | TakaTrail — Personal Expense Tracker |
+| Submission Date | 25 August 2026 |
 
 ## Team Members
 
